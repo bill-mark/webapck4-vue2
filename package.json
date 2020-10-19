@@ -1,0 +1,47 @@
+{
+  "name": "fe_cli_vue2webpack4",
+  "version": "1.0.0",
+  "description": "前端框架配置模板",
+  "main": "index.js",
+  "private": true,
+  "scripts": {
+    "serve": "webpack-dev-server --hot  --config build/webpack.dev.js",
+    "dev": "webpack-dev-server --open --config build/webpack.dev.js",
+    "build": "webpack  --config build/webpack.prod.js",
+    "distanalyzer": "webpack --env.analyzer=true --config build/webpack.prod.js"
+  },
+  "author": "dengzixiang",
+  "license": "ISC",
+  "dependencies": {
+    "core-js": "^3.6.5",
+    "fastclick": "^1.0.6",
+    "vconsole": "^3.3.4",
+    "vue": "^2.6.12"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.12.1",
+    "babel-loader": "^8.1.0",
+    "clean-webpack-plugin": "^3.0.0",
+    "css-loader": "^5.0.0",
+    "file-loader": "^6.1.1",
+    "html-webpack-plugin": "^4.5.0",
+    "less": "^3.12.2",
+    "less-loader": "^7.0.2",
+    "mini-css-extract-plugin": "^1.0.0",
+    "node-sass": "^4.14.1",
+    "sass-loader": "^10.0.3",
+    "vue-loader": "^15.9.3",
+    "vue-template-compiler": "^2.6.12",
+    "webpack": "^4.29.6",
+    "webpack-bundle-analyzer": "^3.9.0",
+    "webpack-cli": "^3.3.0",
+    "webpack-dev-server": "^3.11.0",
+    "webpack-manifest-plugin": "^2.2.0",
+    "webpack-merge": "^5.2.0"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead"
+  ]
+}
