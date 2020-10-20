@@ -1,8 +1,7 @@
 const path = require('path')
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
-const MiniCssExtractPlugin = require('mini-css-extract-plugin')
-
+const join = (...dir) => path.join(__dirname, ...dir);
 
 
 module.exports = env => {
@@ -20,7 +19,14 @@ module.exports = env => {
         output: {
             filename: '[name].code.js',
             chunkFilename: '[name].bundle.js',//动态导入 分离bundle 比如lodashjs配合注释import(/* webpackChunkName: "lodash" */ 'lodash') 会打包成lodash.bundle.js
-            path: path.resolve(__dirname, '../dist')
+            path: path.resolve(__dirname, '../dist'),
+            
+        },
+        resolve: {
+            extensions: ['.vue', '.js', '.json'],
+            alias: {
+              '@': join('../src'),  //@方式引入资源
+            },
         },
         module: {
             rules: [
@@ -35,50 +41,7 @@ module.exports = env => {
                         /node_modules/.test(file) &&
                         !/\.vue\.js/.test(file)
                     )
-                },
-                {
-                    test: /\.(svg|woff2?|ttf|eot|jpe?g|png|gif)$/,
-                    use: {
-                        loader: 'file-loader',
-                        options: {
-                            name: '[name].[hash:8].[ext]',
-                            outputPath: 'assets/images/'
-                        }
-                    }
-                },
-                {
-                    //解析器的执行顺序是从下往上(先css-loader再vue-style-loader)
-                    test: /\.css$/,
-                    use: [
-                        process.env.NODE_ENV !== 'production'
-                            ? 'vue-style-loader'
-                            : MiniCssExtractPlugin.loader,  //prod CSS被提取出来打包
-                        {
-                            loader: 'css-loader',
-                            options: {
-                                modules: false,  //modules 开关,移动端多页面模式关闭class hash命名
-                                // 自定义生成的类名
-                                localIdentName: '[local]_[hash:base64:8]'
-                            }
-                        }
-                    ]
-                },
-                {
-                    test: /\.scss$/,
-                    use: [
-                        'vue-style-loader',
-                        'css-loader',
-                        'sass-loader'
-                    ]
-                },
-                {
-                    test: /\.less$/,
-                    use: [
-                        'vue-style-loader',
-                        'css-loader',
-                        'less-loader'
-                    ]
-                },
+                },            
             ]
         },
     }
