@@ -70,10 +70,11 @@ module.exports = env => {
                 {
                     test: /\.(svg|woff2?|ttf|eot|jpe?g|png|gif)$/,
                     use: {
-                        loader: 'file-loader',
+                        loader: 'url-loader',
                         options: {
+                            limit:1024*100,//大于100K 自动调用fileloader
                             name: '[name].[hash:8].[ext]',
-                            outputPath: './assets/images/'
+                            outputPath: 'assets/images/'
                         }
                     }
                 }
