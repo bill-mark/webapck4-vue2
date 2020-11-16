@@ -14,7 +14,7 @@ module.exports = env => {
         // devtool:'source-map',//开启将会生成map文件
         mode: 'production',
         output:{
-            publicPath: '../../',
+           // publicPath: '../../',
         },
         plugins: [
             new CleanWebpackPlugin(),//自动清除output下面的目录

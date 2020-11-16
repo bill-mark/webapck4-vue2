@@ -1,4 +1,7 @@
 module.exports = {
+    plugins:[
+      '@babel/plugin-proposal-class-properties', //支持class
+    ],
     presets: [
       [
         "@babel/preset-env",
